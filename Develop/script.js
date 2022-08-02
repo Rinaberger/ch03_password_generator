@@ -1,5 +1,22 @@
 // Assignment code here
 
+/* PASSWORD GENERATOR / VARIABLES */
+var inputAlphaUpper = [
+  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T",
+  "U","V","W","X","Y","Z",
+];
+
+var inputAlphaLower = [
+  "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s",
+  "t","u","v","w","x","y","z",
+];
+
+var inputNumber = [0,1,2,3,4,5,6,7,8,9];
+
+var inputSpecialChar = [
+  "!","@","#","$","%","^","&","?",">","<","(",")","+",
+];
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -31,13 +48,13 @@ function generatePassword() {
   // Validate input of promptUpperCase to be either "Yes" or "No"
     if (promptUppercase === "yes" || promptUppercase === "YES" || promptUppercase === "Yes") {
       window.alert("Uppercase Letters will be included.");
-      promptUppercase = "Yes";
-      console.log("promptUppercase = " + promptUppercase)       
+      promptUppercase = inputAlphaUpper;
+      console.log("promptUppercase = " + inputAlphaUpper);       
     }
     else if (promptUppercase ==="no" || promptUppercase === "NO" || promptUppercase === "No") {
       window.alert("Uppercase Letters will NOT be included.");
-      promptUppercase = "No"; 
-      console.log("promptUppercase = " + promptUppercase);           
+      promptUppercase = (promptUppercase = "");
+      console.log("promptUpperCase = " + promptUppercase);
     }
     else {
       window.alert(" Please answer Yes or No.");
@@ -53,13 +70,13 @@ function generatePassword() {
     }
     else if (promptLowercase === "yes" || promptLowercase === "YES" || promptLowercase === "Yes") {
       window.alert("Lowercase letters will be included.");
-      promptLowercase = "Yes";
-      console.log("promptLowercase = " + promptLowercase)       
+      promptLowercase = inputAlphaLower;
+      console.log("promptLowercase = " + inputAlphaLower);       
     }
     else if (promptLowercase ==="no" || promptLowercase === "NO" || promptLowercase === "No") {
       window.alert("Lowercase letters will NOT be included.");
-      promptLowercase = "No";  
-      console.log("promptLowercase = " + promptLowercase);       
+      promptLowercase = (promptLowercase = "");
+      console.log("promptLowercase = " + promptLowercase);           
     }
     else {
       window.alert(" Please answer Yes or No.");
@@ -74,14 +91,14 @@ function generatePassword() {
       return generatePassword();
     }
     else if (promptNumber === "yes" || promptNumber === "YES" || promptNumber === "Yes") {
-      window.alert("Special characters will be included.");
-      promptNumber = "Yes";
-      console.log("promptNumber = " + promptNumber);       
+      window.alert("Numbers will be included.");
+      promptNumber = inputNumber;
+      console.log("promptNumber = " + inputNumber);       
     }
     else if (promptNumber ==="no" || promptNumber === "NO" || promptNumber === "No") {
-      window.alert("Special characters will NOT be included.");
-      promptNumber = "No";
-      console.log("promptNumber = " + promptNumber); 
+      window.alert("Numbers will NOT be included.");
+      promptNumber = (promptNumber = "");
+      console.log("promptNumber = " + promptNumber);
     }
     else {
       window.alert(" Please answer Yes or No.");
@@ -97,19 +114,71 @@ function generatePassword() {
     }
     else if (promptSpecialChar === "yes" || promptSpecialChar === "YES" || promptSpecialChar === "Yes") {
       window.alert("Special characters will be included.");
-      promptSpecialChar = "Yes";
-      console.log("promptSpecialChar = " + promptSpecialChar); 
+      promptSpecialChar = inputSpecialChar;
+      console.log("promptSpecialChar = " + inputSpecialChar); 
     }
     else if (promptSpecialChar ==="no" || promptSpecialChar === "NO" || promptSpecialChar === "No" ) {
       window.alert("Special characters will NOT be included.");
-      promptSpecialChar = "No";
-      console.log("promptSpecialChar = " + promptSpecialChar); 
+      promptSpecialChar = (promptSpecialChar = "");
+      console.log("promptSpecialChar = " + promptSpecialChar);
     }
     else {
       window.alert(" Please answer Yes or No.");
       return generatePassword();
-    };  
-};
+    };
+
+    //confirm user input requests
+
+    
+    
+    // build password string
+    if (promptUppercase === "") {
+      console.log("uppercase empty")  
+      passwordString = "";
+      console.log(passwordString);
+    }
+    else(passwordString = inputAlphaUpper);
+      console.log(passwordString);
+    
+    if (promptLowercase === "") {
+      console.log("lowercase empty");
+    }
+    else(passwordString = passwordString.concat(inputAlphaLower));
+      console.log(passwordString);
+
+    if (promptNumber === "") {
+      console.log("number empty");
+    }
+    else(passwordString = passwordString.concat(inputNumber));
+      console.log(passwordString);
+
+    if (promptSpecialChar === "") {
+      console.log("special character empty");
+    }
+    else(passwordString = passwordString.concat(inputSpecialChar));
+      console.log(passwordString);
+
+    //Display final password string
+      console.log("password string is =" + passwordString);
+    
+      var confirmInput = window.confirm("Please Confirm: Password length =" + promptLength + ", and will include a random sampling of the following characters: " 
+      + passwordString);
+  
+  // calculate password
+    var chars = passwordString;
+    var passLength = promptLength;
+    var password = "";
+
+    for(var i=0; i=passLength; i++) {
+      var randNum = Math.floor(Math.random() * chars.length);
+      console.log(randNum);
+    
+      password += chars.substring(randNum, randNum + 1);
+      console.log(password);
+    } 
+ };  
+  
+
 
 
 function writePassword() {
@@ -124,20 +193,5 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-/* PASSWORD GENERATOR / VARIABLES */
-var alphaUpperCase = [
-  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T",
-  "U","V","W","X","Y","Z"
-];
 
-var alphaLowerCase = [
-  "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s",
-  "t","u","v","w","x","y","z"
-];
-
-var number = [0,1,2,3,4,5,6,7,8,9];
-
-var specialCharacter = [
-  "!","@","#","$","%","^","&","?",">","<","(",")","+"
-];
 
