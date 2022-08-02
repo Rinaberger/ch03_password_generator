@@ -1,21 +1,13 @@
+/* Hi Grader! Hope all is well. I tried to create a cancel function on the alerts but it was conflicting with the else "empty" statements. Sorry.*/
+
 // Assignment code here
 
 /* PASSWORD GENERATOR / VARIABLES */
-var inputAlphaUpper = [
-  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T",
-  "U","V","W","X","Y","Z",
-];
+var inputAlphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var inputAlphaLower = "abcdefghijklmnopqrstuvwxyz"
+var inputNumber = "0123456789"
+var inputSpecialChar = "!@#$%^&?><()+"
 
-var inputAlphaLower = [
-  "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s",
-  "t","u","v","w","x","y","z",
-];
-
-var inputNumber = [0,1,2,3,4,5,6,7,8,9];
-
-var inputSpecialChar = [
-  "!","@","#","$","%","^","&","?",">","<","(",")","+",
-];
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -44,94 +36,98 @@ function generatePassword() {
     };
   
   // Ask if uppercase letters should be included.
+  function startPromptUpperCase() {
   var promptUppercase = window.prompt('Would you like to include uppercase letters?' , "Yes or No?");
   // Validate input of promptUpperCase to be either "Yes" or "No"
     if (promptUppercase === "yes" || promptUppercase === "YES" || promptUppercase === "Yes") {
       window.alert("Uppercase Letters will be included.");
       promptUppercase = inputAlphaUpper;
-      console.log("promptUppercase = " + inputAlphaUpper);       
+      console.log("promptUppercase = " + inputAlphaUpper); 
+      return promptUppercase;      
     }
     else if (promptUppercase ==="no" || promptUppercase === "NO" || promptUppercase === "No") {
       window.alert("Uppercase Letters will NOT be included.");
       promptUppercase = (promptUppercase = "");
       console.log("promptUpperCase = " + promptUppercase);
+      return promptUppercase
     }
     else {
       window.alert(" Please answer Yes or No.");
-      return generatePassword();
+      return startPromptUpperCase();
     };
+  };
+  var promptUppercase = startPromptUpperCase()
 
   // Ask if lowercase letters should be included.
+  function startPromptLowerCase() {
   var promptLowercase = window.prompt('Would you like to include lowercase letters?' , "Yes or No?");
   // Validate input of promptUpperCase to be either "Yes" or "No"
-    if (promptLowercase === "" || promptLowercase === null) {
-      window.alert(" Please answer Yes or No.");
-      return generatePassword();
-    }
-    else if (promptLowercase === "yes" || promptLowercase === "YES" || promptLowercase === "Yes") {
+    if (promptLowercase === "yes" || promptLowercase === "YES" || promptLowercase === "Yes") {
       window.alert("Lowercase letters will be included.");
       promptLowercase = inputAlphaLower;
-      console.log("promptLowercase = " + inputAlphaLower);       
+      console.log("promptLowercase = " + inputAlphaLower); 
+      return promptLowercase      
     }
     else if (promptLowercase ==="no" || promptLowercase === "NO" || promptLowercase === "No") {
       window.alert("Lowercase letters will NOT be included.");
       promptLowercase = (promptLowercase = "");
-      console.log("promptLowercase = " + promptLowercase);           
+      console.log("promptLowercase = " + promptLowercase);
+      return promptLowercase           
     }
     else {
       window.alert(" Please answer Yes or No.");
-      return generatePassword();
+      return startPromptLowerCase();
     };
+  };
+  var promptLowercase = startPromptLowerCase()
   
   // Ask if numbers should be included.
+  function startPromptNumber() {
   var promptNumber = window.prompt('Would you like to include numbers?' , "Yes or No?");
     // Validate input of promptUpperCase to be either "Yes" or "No"
-    if (promptNumber === "" || promptNumber === null) {
-      window.alert(" Please answer Yes or No.");
-      return generatePassword();
-    }
-    else if (promptNumber === "yes" || promptNumber === "YES" || promptNumber === "Yes") {
+    if (promptNumber === "yes" || promptNumber === "YES" || promptNumber === "Yes") {
       window.alert("Numbers will be included.");
       promptNumber = inputNumber;
-      console.log("promptNumber = " + inputNumber);       
+      console.log("promptNumber = " + inputNumber);
+      return promptNumber       
     }
     else if (promptNumber ==="no" || promptNumber === "NO" || promptNumber === "No") {
       window.alert("Numbers will NOT be included.");
       promptNumber = (promptNumber = "");
       console.log("promptNumber = " + promptNumber);
+      return promptNumber
     }
     else {
       window.alert(" Please answer Yes or No.");
-      return generatePassword();
+      return startPromptNumber();
     };
+  };
+  var promptNumber = startPromptNumber()
    
   // Ask if special characters should be included.
+  function startPromptSpecialChar() {
   var promptSpecialChar = window.prompt('Would you like to include special characters?' , "Yes or No?");
     // Validate input of promptUpperCase to be either "Yes" or "No"
-    if (promptSpecialChar === "" || promptSpecialChar === null) {
-      window.alert(" Please answer Yes or No.");
-      return generatePassword();
-    }
-    else if (promptSpecialChar === "yes" || promptSpecialChar === "YES" || promptSpecialChar === "Yes") {
+    if (promptSpecialChar === "yes" || promptSpecialChar === "YES" || promptSpecialChar === "Yes") {
       window.alert("Special characters will be included.");
       promptSpecialChar = inputSpecialChar;
       console.log("promptSpecialChar = " + inputSpecialChar); 
+      return promptSpecialChar
     }
     else if (promptSpecialChar ==="no" || promptSpecialChar === "NO" || promptSpecialChar === "No" ) {
       window.alert("Special characters will NOT be included.");
       promptSpecialChar = (promptSpecialChar = "");
       console.log("promptSpecialChar = " + promptSpecialChar);
+      return promptSpecialChar
     }
     else {
       window.alert(" Please answer Yes or No.");
-      return generatePassword();
+      return startPromptSpecialChar();
     };
-
-    //confirm user input requests
-
+  };
+  var promptSpecialChar = startPromptSpecialChar()
     
-    
-    // build password string
+    // build passwordString
     if (promptUppercase === "") {
       console.log("uppercase empty")  
       passwordString = "";
@@ -161,25 +157,28 @@ function generatePassword() {
     //Display final password string
       console.log("password string is =" + passwordString);
     
-      var confirmInput = window.confirm("Please Confirm: Password length =" + promptLength + ", and will include a random sampling of the following characters: " 
+    // return alert if no characters are included
+    if (passwordString === "") {
+        alert("Password cannot be generated. Please select at least one character option.")
+        return generatePassword();
+      }
+
+    //confirm user input requests  
+    var confirmInput = window.confirm("Please Confirm:" + 
+    "Password length will be " + promptLength + " characters, and will include a random sampling of the following characters: " 
       + passwordString);
-  
+      
   // calculate password
     var chars = passwordString;
     var passLength = promptLength;
     var password = "";
-
-    for(var i=0; i=passLength; i++) {
-      var randNum = Math.floor(Math.random() * chars.length);
-      console.log(randNum);
     
-      password += chars.substring(randNum, randNum + 1);
-      console.log(password);
-    } 
- };  
-  
-
-
+    for (var i = 0; i < passLength; i++) {
+      password += chars[Math.floor(Math.random() * chars.length)];
+      console.log(password); 
+   }; 
+   return password; 
+};
 
 function writePassword() {
   var password = generatePassword();
@@ -191,7 +190,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
 
 
 
