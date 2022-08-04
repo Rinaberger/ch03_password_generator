@@ -6,8 +6,7 @@ AUTHOR: Scott Rinaberger
 LINKS:
     ** HTTP URL Link: https://rinaberger.github.io/ch03_password_generator/
     ** GitHub URL: https://github.com/Rinaberger/ch03_password_generator.git
-    ** Application Screenshot: ![screen shot of ](https://user-images.githubusercontent.com/108424256/182481781-21dd50ba-5617-417c-af4b-1ba3de6e7b3d.png)
-
+    
 PURPOSE: 
 
 This assignment designed to apply my learnings around javascript and create a password generator that had the following functions:
